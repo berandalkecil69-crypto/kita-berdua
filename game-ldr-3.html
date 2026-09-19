@@ -1,0 +1,1940 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width,
+initial-scale=1.0,
+maximum-scale=1.0,
+user-scalable=no">
+
+<title>Kita Berdua ❤️ LDR 3.0</title>
+
+<style>
+
+*{
+box-sizing:border-box;
+-webkit-tap-highlight-color:transparent;
+}
+
+body{
+margin:0;
+font-family:Arial,sans-serif;
+min-height:100vh;
+color:white;
+background:
+radial-gradient(circle at 10% 10%,#ff8db8,transparent 25%),
+radial-gradient(circle at 90% 20%,#9d7cff,transparent 30%),
+linear-gradient(135deg,#16001d,#3c063e,#150019);
+overflow-x:hidden;
+}
+
+.app{
+max-width:520px;
+margin:auto;
+padding:18px 14px 40px;
+min-height:100vh;
+}
+
+.hidden{
+display:none!important;
+}
+
+.card{
+background:rgba(255,255,255,.1);
+border:1px solid rgba(255,255,255,.18);
+backdrop-filter:blur(15px);
+border-radius:25px;
+padding:22px;
+margin-bottom:15px;
+box-shadow:0 15px 40px rgba(0,0,0,.3);
+}
+
+.center{
+text-align:center;
+}
+
+.logo{
+font-size:70px;
+animation:beat 1.3s infinite;
+}
+
+@keyframes beat{
+50%{transform:scale(1.15)}
+}
+
+h1{
+font-size:32px;
+margin:5px 0;
+}
+
+h2{
+margin-top:5px;
+}
+
+input{
+width:100%;
+padding:15px;
+margin:7px 0;
+border-radius:15px;
+border:1px solid rgba(255,255,255,.25);
+background:rgba(255,255,255,.1);
+color:white;
+font-size:16px;
+outline:none;
+}
+
+input::placeholder{
+color:#e7c9d9;
+}
+
+button{
+width:100%;
+border:0;
+border-radius:16px;
+padding:15px;
+margin-top:10px;
+font-size:16px;
+font-weight:bold;
+color:white;
+background:linear-gradient(135deg,#ff397e,#ff73a9);
+box-shadow:0 7px 20px rgba(255,50,120,.25);
+transition:.15s;
+}
+
+button:active{
+transform:scale(.94);
+}
+
+.purple{
+background:linear-gradient(135deg,#7450ff,#b06cff);
+}
+
+.orange{
+background:linear-gradient(135deg,#ff7119,#ffb02e);
+}
+
+.blue{
+background:linear-gradient(135deg,#4776e6,#8e54e9);
+}
+
+.green{
+background:linear-gradient(135deg,#00a878,#39d89a);
+}
+
+.dark{
+background:rgba(255,255,255,.12);
+}
+
+.room{
+font-size:32px;
+font-weight:bold;
+letter-spacing:7px;
+margin:15px 0;
+color:#ffd1e2;
+}
+
+.status{
+text-align:center;
+color:#ffc3d9;
+margin:10px 0;
+}
+
+.players{
+display:flex;
+justify-content:space-between;
+gap:10px;
+text-align:center;
+}
+
+.player{
+flex:1;
+padding:12px;
+background:rgba(255,255,255,.08);
+border-radius:16px;
+}
+
+.avatar{
+font-size:35px;
+}
+
+.xpbar{
+height:10px;
+border-radius:20px;
+background:rgba(255,255,255,.15);
+overflow:hidden;
+margin:10px 0;
+}
+
+.xp{
+height:100%;
+width:0;
+background:linear-gradient(90deg,#ff4385,#ffd0e2);
+transition:.5s;
+}
+
+.grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
+}
+
+.menu{
+min-height:105px;
+display:flex;
+align-items:center;
+justify-content:center;
+flex-direction:column;
+gap:5px;
+margin:0;
+}
+
+.icon{
+font-size:34px;
+}
+
+.top{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:12px;
+}
+
+.back{
+width:auto;
+padding:9px 13px;
+margin:0;
+}
+
+.badge{
+background:rgba(255,255,255,.12);
+padding:8px 12px;
+border-radius:20px;
+}
+
+.question{
+font-size:21px;
+font-weight:bold;
+line-height:1.5;
+text-align:center;
+margin:20px 0;
+}
+
+.answer{
+background:rgba(255,255,255,.09);
+text-align:left;
+}
+
+.challenge{
+font-size:20px;
+line-height:1.5;
+text-align:center;
+padding:20px 5px;
+}
+
+.letter{
+background:linear-gradient(135deg,#ffe0eb,#fff4f8);
+color:#5a2342;
+border-radius:20px;
+padding:25px;
+line-height:1.7;
+text-align:center;
+font-size:17px;
+}
+
+.activity{
+max-height:230px;
+overflow:auto;
+}
+
+.activity-item{
+padding:10px;
+border-bottom:1px solid rgba(255,255,255,.1);
+color:#ffd7e5;
+}
+
+.heart{
+position:fixed;
+z-index:9999;
+pointer-events:none;
+font-size:25px;
+animation:fly 1s ease-out forwards;
+}
+
+@keyframes fly{
+0%{
+transform:translate(-50%,-50%) scale(.4);
+opacity:1;
+}
+100%{
+transform:
+translate(-50%,-170px)
+scale(1.7)
+rotate(25deg);
+opacity:0;
+}
+}
+
+.bg-heart{
+position:fixed;
+bottom:-50px;
+pointer-events:none;
+opacity:.6;
+animation:up linear forwards;
+}
+
+@keyframes up{
+from{
+transform:translateY(0) rotate(0);
+opacity:0;
+}
+15%{opacity:.7}
+to{
+transform:translateY(-110vh) rotate(360deg);
+opacity:0;
+}
+}
+
+.levelup{
+position:fixed;
+inset:0;
+background:rgba(15,0,20,.85);
+z-index:10000;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+}
+
+.levelbox{
+animation:pop .5s ease;
+}
+
+@keyframes pop{
+from{
+transform:scale(.3);
+opacity:0;
+}
+to{
+transform:scale(1);
+opacity:1;
+}
+}
+
+.big{
+font-size:85px;
+}
+
+.small{
+font-size:13px;
+color:#dcb8ca;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div id="bg"></div>
+
+<div class="app">
+
+<!-- ================= START ================= -->
+
+<section id="start">
+
+<div class="card center">
+
+<div class="logo">❤️</div>
+
+<h1>Kita Berdua</h1>
+
+<p>
+<b>LDR EDITION 3.0</b>
+</p>
+
+<p class="small">
+Dua HP • Satu hati • Satu Room
+</p>
+
+<input id="myName"
+placeholder="Nama kamu">
+
+<button onclick="createRoom()">
+💕 Buat Room
+</button>
+
+<hr>
+
+<input id="roomInput"
+placeholder="Masukkan Room Code">
+
+<button class="purple"
+onclick="joinRoom()">
+💞 Gabung Room
+</button>
+
+<p id="startStatus"
+class="status"></p>
+
+</div>
+
+</section>
+
+
+<!-- ================= WAITING ================= -->
+
+<section id="waiting"
+class="hidden">
+
+<div class="card center">
+
+<div class="logo"
+style="font-size:55px">
+💗
+</div>
+
+<h2>Room Kamu</h2>
+
+<div class="room"
+id="roomCode">
+------
+</div>
+
+<p>
+Kirim kode ini kepada pasanganmu.
+</p>
+
+<button onclick="copyRoom()">
+📋 Salin Room Code
+</button>
+
+<div class="status"
+id="waitingStatus">
+Menunggu pasangan...
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= HOME ================= -->
+
+<section id="home"
+class="hidden">
+
+<div class="card">
+
+<div class="center">
+
+<div class="logo"
+style="font-size:48px">
+❤️
+</div>
+
+<h2 id="couple">
+Kamu ❤️ Pasangan
+</h2>
+
+<p id="levelText">
+Level 1 • Pasangan Baru
+</p>
+
+<div class="xpbar">
+<div id="xpBar"
+class="xp">
+</div>
+</div>
+
+<p id="xpText">
+0 / 100 XP
+</p>
+
+</div>
+
+<div class="players">
+
+<div class="player">
+
+<div class="avatar">🧑</div>
+
+<b id="hostName">
+Kamu
+</b>
+
+<br>
+
+<span id="hostXp">
+0 XP
+</span>
+
+</div>
+
+<div class="player">
+
+<div class="avatar">👩</div>
+
+<b id="guestName">
+Menunggu...
+</b>
+
+<br>
+
+<span id="guestXp">
+0 XP
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h2>💕 Main Bersama</h2>
+
+<div class="grid">
+
+<button class="menu"
+onclick="openMode('love')">
+
+<span class="icon">❤️</span>
+
+Kirim Love
+
+</button>
+
+
+<button class="menu purple"
+onclick="openMode('truth')">
+
+<span class="icon">😈</span>
+
+Truth or Dare
+
+</button>
+
+
+<button class="menu orange"
+onclick="openMode('challenge')">
+
+<span class="icon">🔥</span>
+
+Tantangan
+
+</button>
+
+
+<button class="menu blue"
+onclick="openMode('letter')">
+
+<span class="icon">💌</span>
+
+Kartu Rindu
+
+</button>
+
+
+<button class="menu green"
+onclick="openMode('quiz')">
+
+<span class="icon">🧠</span>
+
+Tebak Pasangan
+
+</button>
+
+
+<button class="menu"
+onclick="openMode('mission')">
+
+<span class="icon">🎯</span>
+
+Misi
+
+</button>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h3>💬 Aktivitas Pasangan</h3>
+
+<div id="activity"
+class="activity">
+</div>
+
+</div>
+
+
+<div class="card center">
+
+<button class="dark"
+onclick="leaveRoom()">
+🚪 Keluar Room
+</button>
+
+</div>
+
+</section>
+
+
+<!-- ================= LOVE ================= -->
+
+<section id="love"
+class="hidden">
+
+<div class="top">
+
+<button class="back"
+onclick="home()">
+← Kembali
+</button>
+
+<div class="badge">
+❤️ Love
+</div>
+
+</div>
+
+<div class="card center">
+
+<div class="logo">
+❤️
+</div>
+
+<h2>Kirim Love</h2>
+
+<p>
+Tekan tombol dan pasanganmu akan
+melihat efek hati secara realtime.
+</p>
+
+<button onclick="sendLove()">
+💖 KIRIM LOVE
+</button>
+
+</div>
+
+</section>
+
+
+<!-- ================= TRUTH ================= -->
+
+<section id="truth"
+class="hidden">
+
+<div class="top">
+
+<button class="back"
+onclick="home()">
+← Kembali
+</button>
+
+</div>
+
+<div class="card center">
+
+<div class="logo"
+style="font-size:55px">
+😈
+</div>
+
+<h2>Truth or Dare</h2>
+
+<div id="truthText"
+class="challenge">
+Pilih salah satu.
+</div>
+
+<button onclick="sendTruth()">
+💬 Truth
+</button>
+
+<button class="purple"
+onclick="sendDare()">
+🔥 Dare
+</button>
+
+</div>
+
+</section>
+
+
+<!-- ================= CHALLENGE ================= -->
+
+<section id="challenge"
+class="hidden">
+
+<div class="top">
+
+<button class="back"
+onclick="home()">
+← Kembali
+</button>
+
+</div>
+
+<div class="card center">
+
+<div class="logo"
+style="font-size:55px">
+🔥
+</div>
+
+<h2>Tantangan Romantis</h2>
+
+<div id="challengeText"
+class="challenge">
+Ambil tantangan.
+</div>
+
+<button onclick="sendChallenge()">
+🔥 Ambil Tantangan
+</button>
+
+<button class="green"
+onclick="completeChallenge()">
+✅ Selesai!
+</button>
+
+</div>
+
+</section>
+
+
+<!-- ================= LETTER ================= -->
+
+<section id="letter"
+class="hidden">
+
+<div class="top">
+
+<button class="back"
+onclick="home()">
+← Kembali
+</button>
+
+</div>
+
+<div class="card">
+
+<center>
+<h2>💌 Kartu Rindu</h2>
+</center>
+
+<div class="letter"
+id="letterText">
+
+Klik tombol untuk membuka
+pesan rindu.
+
+</div>
+
+<button onclick="sendLetter()">
+💌 Buka Kartu
+</button>
+
+</div>
+
+</section>
+
+
+<!-- ================= QUIZ ================= -->
+
+<section id="quiz"
+class="hidden">
+
+<div class="top">
+
+<button class="back"
+onclick="home()">
+← Kembali
+</button>
+
+</div>
+
+<div class="card">
+
+<div class="center"
+id="quizTurn">
+Giliran
+</div>
+
+<div class="question"
+id="question">
+Pertanyaan
+</div>
+
+<div id="answers">
+</div>
+
+<p id="quizResult"
+class="center">
+</p>
+
+</div>
+
+</section>
+
+
+<!-- ================= MISSION ================= -->
+
+<section id="mission"
+class="hidden">
+
+<div class="top">
+
+<button class="back"
+onclick="home()">
+← Kembali
+</button>
+
+</div>
+
+<div class="card">
+
+<h2>🎯 Misi LDR</h2>
+
+<p>
+Selesaikan bersama.
+</p>
+
+<div id="missionList">
+</div>
+
+</div>
+
+</section>
+
+</div>
+
+
+<!-- ================= LEVEL UP ================= -->
+
+<div id="levelUp"
+class="levelup hidden">
+
+<div class="levelbox">
+
+<div class="big">
+🎉
+</div>
+
+<h1>LEVEL UP!</h1>
+
+<p id="levelMessage">
+Hubungan kalian naik level!
+</p>
+
+<button onclick="closeLevel()">
+❤️ Lanjut
+</button>
+
+</div>
+
+</div>
+
+
+<!-- ================= FIREBASE ================= -->
+
+<script type="module">
+
+import {
+initializeApp
+}
+from
+"https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+
+import {
+getAuth,
+signInAnonymously
+}
+from
+"https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+import {
+getDatabase,
+ref,
+set,
+update,
+onValue,
+get
+}
+from
+"https://www.gstatic.com/firebasejs/12.19.0/firebase-database.js";
+
+
+/* =================================================
+   GANTI BAGIAN INI DENGAN CONFIG FIREBASE KAMU
+   ================================================= */
+
+const firebaseConfig = {
+
+apiKey:
+"AIzaSyD2sELVUOTp5Nmr78ve9wQ1gQkNeSBNH_8",
+
+authDomain:
+"kita-berdua-ldr.firebaseapp.com",
+
+databaseURL:
+"https://kita-berdua-ldr-default-rtdb.asia-southeast1.firebasedatabase.app",
+
+projectId:
+"kita-berdua-ldr",
+
+storageBucket:
+"kita-berdua-ldr.firebasestorage.app",
+
+messagingSenderId:
+"377458032316",
+
+appId:
+"1:377458032316:web:4ac36d3de316ee7fad5ab9"
+
+};
+
+
+/* ================= FIREBASE ================= */
+
+const app =
+initializeApp(firebaseConfig);
+
+const auth =
+getAuth(app);
+
+const db =
+getDatabase(app);
+
+let user=null;
+
+let roomId=null;
+
+let roomData=null;
+
+let myName="";
+
+let currentChallenge="";
+
+let quizIndex=0;
+
+
+/* ================= DATA ================= */
+
+const truths=[
+
+"Apa hal kecil yang paling kamu rindukan dari pasanganmu? ❤️",
+
+"Apa kenangan kita yang paling ingin kamu ulangi? 🥰",
+
+"Apa alasan terbesar kamu tetap bertahan dalam hubungan LDR ini? ❤️",
+
+"Apa kebiasaan pasanganmu yang diam-diam kamu sukai? 😘",
+
+"Kalau aku ada di depanmu sekarang, apa yang ingin kamu lakukan? 🤗"
+
+];
+
+
+const dares=[
+
+"Kirim voice note berisi 'Aku sayang kamu' ❤️",
+
+"Kirim foto wajahmu dengan ekspresi paling lucu 😂",
+
+"Telepon pasanganmu sekarang minimal 2 menit 📱",
+
+"Kirim satu lagu yang menggambarkan hubungan kalian 🎵",
+
+"Tulis 3 alasan kenapa kamu sayang pasanganmu 💕"
+
+];
+
+
+const challenges=[
+
+"Kirim foto kegiatanmu sekarang 📸",
+
+"Kirim voice note romantis ❤️",
+
+"Video call minimal 3 menit 📱",
+
+"Kirim kenangan favorit kalian 💕",
+
+"Tulis 5 alasan kamu bersyukur memiliki pasanganmu.",
+
+"Kirim foto makanan hari ini 🍜",
+
+"Buat janji kencan virtual malam ini 🎬"
+
+];
+
+
+const letters=[
+
+"Kamu jauh secara jarak, tapi selalu dekat di pikiranku. ❤️",
+
+"Kalau rindu bisa dikirim lewat pesan, mungkin inbox kamu sudah penuh. 💌",
+
+"Aku tidak membutuhkan hari yang sempurna. Aku hanya ingin melewatinya bersamamu. 🥰",
+
+"Terima kasih sudah tetap bertahan meskipun hubungan kita harus melewati jarak. ❤️",
+
+"Suatu hari nanti kita tidak perlu menghitung jarak lagi. Kita hanya menghitung kenangan. 🌹"
+
+];
+
+
+const quizData=[
+
+"Apa yang paling membuat pasanganmu merasa disayang?",
+
+"Kalau sedang kangen, apa yang paling ingin dilakukan?",
+
+"Kencan impian kalian?",
+
+"Apa hadiah kecil yang paling menyenangkan?",
+
+"Kalau punya satu hari bersama tanpa batas waktu, mau ngapain?"
+
+];
+
+
+const quizAnswers=[
+
+["Diberi perhatian ❤️","Diberi hadiah 🎁","Diajak jalan 🌹","Diberi makanan 🍜"],
+
+["Video call 📱","Chat sampai ketiduran 💬","Bertemu langsung 🥰","Dengar suara pasangan 🎧"],
+
+["Dinner romantis 🍽️","Jalan-jalan 🌎","Nonton film 🎬","Di rumah sambil ngobrol ❤️"],
+
+["Surat cinta 💌","Cokelat 🍫","Bunga 🌹","Foto bersama 📸"],
+
+["Pelukan 🤗","Jalan-jalan 🌅","Makan bersama 🍜","Ngobrol seharian 💬"]
+
+];
+
+
+/* ================= LOGIN ================= */
+
+signInAnonymously(auth)
+
+.then(result=>{
+
+user=result.user;
+
+})
+.catch(error=>{
+
+document.getElementById("startStatus")
+.innerText=
+"Firebase error: "+error.message;
+
+});
+
+
+/* ================= ROOM CODE ================= */
+
+function generateCode(){
+
+const chars=
+"ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+
+let code="";
+
+for(let i=0;i<6;i++){
+
+code+=
+chars[
+Math.floor(
+Math.random()*chars.length
+)
+];
+
+}
+
+return code;
+
+}
+
+
+/* ================= CREATE ROOM ================= */
+
+window.createRoom=async function(){
+
+if(!user){
+
+alert("Tunggu Firebase terhubung.");
+
+return;
+
+}
+
+myName=
+document.getElementById("myName")
+.value
+.trim()
+||"Kamu";
+
+roomId=generateCode();
+
+const data={
+
+host:{
+uid:user.uid,
+name:myName,
+xp:0
+},
+
+guest:null,
+
+xp:0,
+
+level:1,
+
+activity:{
+
+start:{
+text:myName+
+" membuat room ❤️",
+time:Date.now()
+
+}
+
+}
+
+};
+
+try{
+
+await set(
+ref(db,"rooms/"+roomId),
+data
+);
+
+document.getElementById("roomCode")
+.innerText=roomId;
+
+show("waiting");
+
+listenRoom();
+
+}catch(e){
+
+alert(e.message);
+
+}
+
+};
+
+
+/* ================= JOIN ROOM ================= */
+
+window.joinRoom=async function(){
+
+if(!user){
+
+alert("Tunggu Firebase terhubung.");
+
+return;
+
+}
+
+myName=
+document.getElementById("myName")
+.value
+.trim()
+||"Pasangan";
+
+roomId=
+document.getElementById("roomInput")
+.value
+.trim()
+.toUpperCase();
+
+if(roomId.length!==6){
+
+alert("Room Code harus 6 karakter.");
+
+return;
+
+}
+
+try{
+
+await update(
+ref(db,"rooms/"+roomId),
+{
+
+guest:{
+uid:user.uid,
+name:myName,
+xp:0
+}
+
+}
+);
+
+show("home");
+
+listenRoom();
+
+}catch(e){
+
+alert(
+"Room tidak ditemukan atau sudah memiliki pasangan."
+);
+
+}
+
+};
+
+
+/* ================= LISTEN ROOM ================= */
+
+function listenRoom(){
+
+onValue(
+ref(db,"rooms/"+roomId),
+snapshot=>{
+
+if(!snapshot.exists()){
+
+alert("Room sudah tidak tersedia.");
+
+location.reload();
+
+return;
+
+}
+
+roomData=snapshot.val();
+
+updateInterface();
+
+});
+}
+
+
+/* ================= UI ================= */
+
+function updateInterface(){
+
+if(!roomData)return;
+
+const host=
+roomData.host || {};
+
+const guest=
+roomData.guest || {};
+
+document.getElementById("hostName")
+.innerText=
+host.name || "Host";
+
+document.getElementById("guestName")
+.innerText=
+guest.name || "Menunggu...";
+
+document.getElementById("hostXp")
+.innerText=
+(host.xp||0)+" XP";
+
+document.getElementById("guestXp")
+.innerText=
+(guest.xp||0)+" XP";
+
+document.getElementById("couple")
+.innerText=
+(host.name||"Kamu")
++" ❤️ "
++(guest.name||"Pasangan");
+
+let totalXp=
+roomData.xp||0;
+
+let level=
+roomData.level||1;
+
+let current=
+totalXp%100;
+
+document.getElementById("xpBar")
+.style.width=current+"%";
+
+document.getElementById("xpText")
+.innerText=
+current+" / 100 XP";
+
+document.getElementById("levelText")
+.innerText=
+"Level "+level+
+" • Cinta Makin Kuat";
+
+renderActivity();
+
+if(guest.uid){
+
+document.getElementById("waitingStatus")
+.innerText=
+"💕 Pasangan sudah masuk!";
+
+if(
+!document.getElementById("home")
+.classList.contains("hidden")
+){
+
+}else{
+
+show("home");
+
+}
+
+}
+
+}
+
+
+/* ================= ADD XP ================= */
+
+async function addXP(amount){
+
+if(!roomData)return;
+
+let total=
+(roomData.xp||0)+amount;
+
+let oldLevel=
+roomData.level||1;
+
+let newLevel=
+Math.floor(total/100)+1;
+
+let updates={
+
+xp:total,
+
+level:newLevel
+
+};
+
+if(user.uid===roomData.host.uid){
+
+updates["host/xp"]=
+(roomData.host.xp||0)+amount;
+
+}else{
+
+updates["guest/xp"]=
+(roomData.guest.xp||0)+amount;
+
+}
+
+await update(
+ref(db,"rooms/"+roomId),
+updates
+);
+
+if(newLevel>oldLevel){
+
+setTimeout(()=>{
+
+document.getElementById("levelMessage")
+.innerText=
+"Hubungan kalian mencapai Level "
++newLevel+"! ❤️";
+
+document.getElementById("levelUp")
+.classList.remove("hidden");
+
+heartBurst(25);
+
+},300);
+
+}
+
+}
+
+
+/* ================= ACTIVITY ================= */
+
+async function activity(text){
+
+const id=
+"m"+Date.now();
+
+await set(
+ref(
+db,
+"rooms/"+roomId+"/activity/"+id
+),
+{
+
+text:text,
+time:Date.now()
+
+}
+);
+
+}
+
+
+/* ================= RENDER ACTIVITY ================= */
+
+function renderActivity(){
+
+const box=
+document.getElementById("activity");
+
+box.innerHTML="";
+
+if(!roomData.activity)return;
+
+Object
+.values(roomData.activity)
+.sort((a,b)=>b.time-a.time)
+.slice(0,20)
+.forEach(item=>{
+
+let div=
+document.createElement("div");
+
+div.className="activity-item";
+
+div.innerText=item.text;
+
+box.appendChild(div);
+
+});
+
+}
+
+
+/* ================= LOVE ================= */
+
+window.sendLove=async function(){
+
+heartBurst(25);
+
+await addXP(5);
+
+await activity(
+myName+" mengirim banyak ❤️"
+);
+
+};
+
+
+/* ================= TRUTH ================= */
+
+window.sendTruth=function(){
+
+const text=
+truths[
+Math.floor(
+Math.random()*truths.length
+)
+];
+
+document.getElementById("truthText")
+.innerText=text;
+
+heartBurst(8);
+
+addXP(5);
+
+activity(
+myName+" memilih TRUTH 💬"
+);
+
+};
+
+
+/* ================= DARE ================= */
+
+window.sendDare=function(){
+
+const text=
+dares[
+Math.floor(
+Math.random()*dares.length
+)
+];
+
+document.getElementById("truthText")
+.innerText=text;
+
+heartBurst(12);
+
+addXP(10);
+
+activity(
+myName+" memilih DARE 🔥"
+);
+
+};
+
+
+/* ================= CHALLENGE ================= */
+
+window.sendChallenge=function(){
+
+currentChallenge=
+challenges[
+Math.floor(
+Math.random()*challenges.length
+)
+];
+
+document.getElementById("challengeText")
+.innerText=
+currentChallenge;
+
+heartBurst(10);
+
+activity(
+myName+" mengambil tantangan 🔥"
+);
+
+};
+
+
+window.completeChallenge=function(){
+
+if(!currentChallenge){
+
+document.getElementById("challengeText")
+.innerText=
+"Ambil tantangan terlebih dahulu ❤️";
+
+return;
+
+}
+
+addXP(20);
+
+heartBurst(20);
+
+activity(
+myName+
+" menyelesaikan tantangan ❤️ +20 XP"
+);
+
+document.getElementById("challengeText")
+.innerText=
+"🎉 Berhasil! +20 XP ❤️";
+
+currentChallenge="";
+
+};
+
+
+/* ================= LETTER ================= */
+
+window.sendLetter=function(){
+
+const text=
+letters[
+Math.floor(
+Math.random()*letters.length
+)
+];
+
+document.getElementById("letterText")
+.innerText=text;
+
+heartBurst(15);
+
+addXP(5);
+
+activity(
+myName+
+" membuka Kartu Rindu 💌"
+);
+
+};
+
+
+/* ================= QUIZ ================= */
+
+function showQuiz(){
+
+if(quizIndex>=quizData.length){
+
+document.getElementById("question")
+.innerText=
+"🎉 Pertanyaan selesai!";
+
+document.getElementById("answers")
+.innerHTML=
+"<center>Hebat! ❤️</center>";
+
+return;
+
+}
+
+document.getElementById("question")
+.innerText=
+quizData[quizIndex];
+
+document.getElementById("quizTurn")
+.innerText=
+"Giliran: "+
+myName;
+
+let box=
+document.getElementById("answers");
+
+box.innerHTML="";
+
+quizAnswers[quizIndex]
+.forEach(answer=>{
+
+let btn=
+document.createElement("button");
+
+btn.className="answer";
+
+btn.innerText=answer;
+
+btn.onclick=async()=>{
+
+box
+.querySelectorAll("button")
+.forEach(b=>b.disabled=true);
+
+btn.style.background=
+"rgba(54,211,153,.35)";
+
+document.getElementById("quizResult")
+.innerText=
+"Jawaban dicatat ❤️ +10 XP";
+
+await addXP(10);
+
+await activity(
+myName+
+" menjawab pertanyaan Tebak Pasangan 🧠"
+);
+
+heartBurst(15);
+
+quizIndex++;
+
+setTimeout(showQuiz,700);
+
+};
+
+box.appendChild(btn);
+
+});
+
+}
+
+window.startQuiz=function(){
+
+quizIndex=0;
+
+showQuiz();
+
+};
+
+
+/* ================= MISSIONS ================= */
+
+const missions=[
+
+"Kirim ucapan selamat pagi ❤️",
+
+"Tanyakan sudah makan atau belum 🍜",
+
+"Kirim foto kegiatan hari ini 📸",
+
+"Video call minimal 5 menit 📱",
+
+"Kirim pesan romantis 💌",
+
+"Ucapkan terima kasih kepada pasangan 🥰"
+
+];
+
+
+function makeMissions(){
+
+const box=
+document.getElementById("missionList");
+
+box.innerHTML="";
+
+missions.forEach((item,index)=>{
+
+let btn=
+document.createElement("button");
+
+btn.className="dark";
+
+btn.innerText=
+"⬜ "+item;
+
+btn.onclick=async()=>{
+
+btn.disabled=true;
+
+btn.innerText=
+"✅ "+item;
+
+addXP(15);
+
+heartBurst(12);
+
+activity(
+myName+
+" menyelesaikan misi 🎯 +15 XP"
+);
+
+};
+
+box.appendChild(btn);
+
+});
+
+}
+
+
+/* ================= NAVIGATION ================= */
+
+window.openMode=function(mode){
+
+document
+.querySelectorAll("section")
+.forEach(s=>
+s.classList.add("hidden")
+);
+
+if(mode==="love")
+show("love");
+
+if(mode==="truth")
+show("truth");
+
+if(mode==="challenge")
+show("challenge");
+
+if(mode==="letter")
+show("letter");
+
+if(mode==="quiz"){
+
+show("quiz");
+
+startQuiz();
+
+}
+
+if(mode==="mission"){
+
+show("mission");
+
+makeMissions();
+
+}
+
+};
+
+
+window.home=function(){
+
+show("home");
+
+};
+
+
+function show(id){
+
+document
+.querySelectorAll("section")
+.forEach(s=>
+s.classList.add("hidden")
+);
+
+document
+.getElementById(id)
+.classList.remove("hidden");
+
+}
+
+
+/* ================= COPY ROOM ================= */
+
+window.copyRoom=function(){
+
+navigator.clipboard
+.writeText(roomId)
+.then(()=>{
+
+heartBurst(10);
+
+alert(
+"Room Code berhasil disalin ❤️"
+);
+
+});
+
+};
+
+
+/* ================= LEAVE ================= */
+
+window.leaveRoom=function(){
+
+if(
+confirm(
+"Keluar dari room?"
+)
+){
+
+location.reload();
+
+}
+
+};
+
+
+/* ================= LEVEL ================= */
+
+window.closeLevel=function(){
+
+document
+.getElementById("levelUp")
+.classList.add("hidden");
+
+};
+
+
+/* ================= HEART ================= */
+
+function createHeart(x,y){
+
+let h=
+document.createElement("div");
+
+h.className="heart";
+
+h.innerText=
+[
+"❤️",
+"💕",
+"💖",
+"💗",
+"💓",
+"💘"
+]
+[
+Math.floor(
+Math.random()*6
+)
+];
+
+h.style.left=x+"px";
+h.style.top=y+"px";
+
+document.body.appendChild(h);
+
+setTimeout(
+()=>h.remove(),
+1000
+);
+
+}
+
+
+function heartBurst(amount=10){
+
+for(let i=0;i<amount;i++){
+
+setTimeout(()=>{
+
+createHeart(
+Math.random()*
+window.innerWidth,
+
+window.innerHeight*
+(.4+Math.random()*.3)
+
+);
+
+},i*40);
+
+}
+
+}
+
+
+/* Klik layar */
+
+document.addEventListener(
+"click",
+e=>{
+
+createHeart(
+e.clientX,
+e.clientY
+);
+
+}
+);
+
+
+/* Background */
+
+setInterval(()=>{
+
+let h=
+document.createElement("div");
+
+h.className="bg-heart";
+
+h.innerText=
+[
+"❤️",
+"💕",
+"💖",
+"💗"
+]
+[
+Math.floor(
+Math.random()*4
+)
+];
+
+h.style.left=
+Math.random()*100+"%";
+
+h.style.fontSize=
+(12+Math.random()*20)+"px";
+
+h.style.animationDuration=
+(5+Math.random()*6)+"s";
+
+document.body.appendChild(h);
+
+setTimeout(
+()=>h.remove(),
+12000
+);
+
+},800);
+
+</script>
+
+</body>
+</html>
