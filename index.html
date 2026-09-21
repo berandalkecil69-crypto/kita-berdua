@@ -361,7 +361,12 @@ color:#dcb8ca;
 <body>
 
 <div id="bg"></div>
-
+<div id="loveNotification" class="love-notification">
+  💖
+  <div id="loveNotificationText">
+    Pasangan mengirim Love!
+  </div>
+</div>
 <div class="app">
 
 <!-- ================= START ================= -->
@@ -948,7 +953,7 @@ let myName="";
 let currentChallenge="";
 
 let quizIndex=0;
-
+const seenLoveNotifications = new Set();
 
 /* ================= DATA ================= */
 
@@ -1222,8 +1227,71 @@ alert(
 
 
 /* ================= LISTEN ROOM ================= */
+/* ================= LOVE NOTIFICATION ================= */
 
+function listenLoveNotifications(){
+
+  onValue(
+    ref(db,"rooms/"+roomId+"/activity"),
+    snapshot=>{
+
+      if(!snapshot.exists()) return;
+
+      const activities=snapshot.val();
+
+      Object.entries(activities).forEach(
+        ([id,item])=>{
+
+          if(
+            item.type==="love" &&
+            item.senderUid!==user.uid &&
+            !seenLoveNotifications.has(id)
+          ){
+
+            seenLoveNotifications.add(id);
+
+            showLoveNotification(
+              item.senderName
+            );
+
+          }
+
+        }
+      );
+
+    }
+  );
+
+}
+
+
+function showLoveNotification(senderName){
+
+  const notification =
+    document.getElementById("loveNotification");
+
+  const text =
+    document.getElementById("loveNotificationText");
+
+  if(!notification || !text) return;
+
+  text.innerText =
+    senderName+" mengirim Love untukmu! ❤️";
+
+  notification.classList.add("show");
+
+  heartBurst(15);
+
+  setTimeout(()=>{
+
+    notification.classList.remove("show");
+
+  },4000);
+
+}
 function listenRoom(){
+
+listenLoveNotifications();
 
 onValue(
 ref(db,"rooms/"+roomId),
@@ -1395,7 +1463,29 @@ async function addXP(amount){
 }
 
 /* ================= RENDER ACTIVITY ================= */
+/* ================= ACTIVITY ================= */
 
+async function activity(text,type="activity"){
+
+  const id =
+    "m" + Date.now() + "_" +
+    Math.random().toString(36).slice(2,7);
+
+  await set(
+    ref(
+      db,
+      "rooms/" + roomId + "/activity/" + id
+    ),
+    {
+      text:text,
+      type:type,
+      senderUid:user.uid,
+      senderName:myName,
+      time:Date.now()
+    }
+  );
+
+}
 function renderActivity(){
 
 const box=
@@ -1429,13 +1519,14 @@ box.appendChild(div);
 
 window.sendLove=async function(){
 
-heartBurst(25);
+  heartBurst(25);
 
-await addXP(5);
+  await addXP(5);
 
-await activity(
-myName+" mengirim banyak ❤️"
-);
+  await activity(
+    myName+" mengirim banyak ❤️",
+    "love"
+  );
 
 };
 
