@@ -1308,85 +1308,69 @@ show("home");
 
 async function addXP(amount){
 
-if(!roomData)return;
+  if(!roomData) return;
 
-let total=
-(roomData.xp||0)+amount;
+  const isHost = user.uid === roomData.host.uid;
 
-let oldLevel=
-roomData.level||1;
+  const hostXp = roomData.host?.xp || 0;
+  const guestXp = roomData.guest?.xp || 0;
 
-let newLevel=
-Math.floor(total/100)+1;
+  let newHostXp = hostXp;
+  let newGuestXp = guestXp;
 
-let updates={
+  // Hanya pemain yang melakukan aktivitas yang mendapat XP
+  if(isHost){
+    newHostXp += amount;
+  }else{
+    newGuestXp += amount;
+  }
 
-xp:total,
+  // XP bersama = gabungan XP kedua pemain
+  const totalXp = newHostXp + newGuestXp;
 
-level:newLevel
+  const oldLevel = roomData.level || 1;
 
-};
+  // Level berdasarkan XP bersama
+  const newLevel = Math.floor(totalXp / 100) + 1;
 
-if(user.uid===roomData.host.uid){
+  const updates = {
+    "host/xp": newHostXp,
+    "guest/xp": newGuestXp,
+    "xp": totalXp,
+    "level": newLevel
+  };
 
-updates["host/xp"]=
-(roomData.host.xp||0)+amount;
+  try{
 
-}else{
+    await update(
+      ref(db, "rooms/" + roomId),
+      updates
+    );
 
-updates["guest/xp"]=
-(roomData.guest.xp||0)+amount;
+    if(newLevel > oldLevel){
 
+      setTimeout(()=>{
+
+        document.getElementById("levelMessage").innerText =
+          "Hubungan kalian mencapai Level "
+          + newLevel + "! ❤️";
+
+        document
+          .getElementById("levelUp")
+          .classList.remove("hidden");
+
+        heartBurst(25);
+
+      },300);
+
+    }
+
+  }catch(error){
+
+    console.error("Gagal menambah XP:", error);
+
+  }
 }
-
-await update(
-ref(db,"rooms/"+roomId),
-updates
-);
-
-if(newLevel>oldLevel){
-
-setTimeout(()=>{
-
-document.getElementById("levelMessage")
-.innerText=
-"Hubungan kalian mencapai Level "
-+newLevel+"! ❤️";
-
-document.getElementById("levelUp")
-.classList.remove("hidden");
-
-heartBurst(25);
-
-},300);
-
-}
-
-}
-
-
-/* ================= ACTIVITY ================= */
-
-async function activity(text){
-
-const id=
-"m"+Date.now();
-
-await set(
-ref(
-db,
-"rooms/"+roomId+"/activity/"+id
-),
-{
-
-text:text,
-time:Date.now()
-
-}
-);
-
-}
-
 
 /* ================= RENDER ACTIVITY ================= */
 
