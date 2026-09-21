@@ -331,7 +331,29 @@ font-size:85px;
 font-size:13px;
 color:#dcb8ca;
 }
+.love-notification{
+  position:fixed;
+  top:20px;
+  left:50%;
+  transform:translateX(-50%) translateY(-120px);
+  width:calc(100% - 30px);
+  max-width:480px;
+  background:linear-gradient(135deg,#ff397e,#9d5cff);
+  color:white;
+  padding:16px 20px;
+  border-radius:20px;
+  z-index:20000;
+  box-shadow:0 10px 35px rgba(0,0,0,.4);
+  text-align:center;
+  font-weight:bold;
+  opacity:0;
+  transition:.4s;
+}
 
+.love-notification.show{
+  transform:translateX(-50%) translateY(0);
+  opacity:1;
+}
 </style>
 
 </head>
